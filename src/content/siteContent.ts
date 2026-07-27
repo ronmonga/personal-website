@@ -126,6 +126,10 @@ export const siteContent = {
       },
       links: [
         {
+          label: 'Paper',
+          href: 'https://www.epj-conferences.org/articles/epjconf/abs/2025/22/epjconf_chep2025_01341/epjconf_chep2025_01341.html',
+        },
+        {
           label: 'Poster',
           href: 'https://sdm.lbl.gov/oapapers/sc23-poster-monga.pdf',
         },
