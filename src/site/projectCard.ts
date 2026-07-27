@@ -4,7 +4,7 @@ import {
   renderProjectImage,
   renderProjectLinks,
   renderProjectMeta,
-} from './shared.ts'
+} from './rendering.ts'
 
 export function renderProjectCard(project: Project): string {
   const image = renderProjectImage(project, 'project-card-image')

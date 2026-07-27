@@ -10,7 +10,7 @@
   --site-link: #4b454f;
   --site-muted: #736b77;
   --site-copy: #5e5663;
-  --site-project-surface: rgb(230 227 229 / 86%);
+  --site-project-surface: rgb(var(--site-paper-rgb) / 82%);
   --site-project-placeholder: #dad5db;
   --site-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   --site-serif: Iowan Old Style, Baskerville, "Times New Roman", serif;
@@ -35,7 +35,7 @@ html {
 
 #app,
 .site-root,
-.editorial-top-rail-design {
+.site-layout {
   min-height: 100vh;
 }
 

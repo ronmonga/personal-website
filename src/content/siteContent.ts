@@ -55,10 +55,10 @@ export const siteContent = {
     // Each entry is one paragraph. Add, remove, and reorder freely.
     blurb: [
       `Welcome! My name is Ronak Singh Monga.`,
-      `I'm a Data Scientist interested in finding ways to apply, align, and train LLMs in ways that safely generate positive impact. I'm considerably worried about the world's future, especially for the next few years.`,
+      `I'm a Data Scientist interested in finding ways to apply, align, and train LLMs in ways that safely generate positive impact. I find multi-agent environments and their emergent behaviors particularly fascinating.`,
       `I live in the bay, but have also spent significant time on the east coast, midwest, and in Sydney, Australia!`,
       `By night I'm a bhangra dancer. I love to teach, compete, and perform at the occasional concert.`,
-      `On a full moon, however, you might find me involved in puzzles, music, hiking, camping, or even fruit.`
+      `On a full moon, however, you might find me involved in puzzles, music, hiking, or eating fruit.`
     ],
     // Each phrase is matched once across the free-form blurb. Add, remove, or
     // move the phrase without changing the page markup. Multiple images are
@@ -140,6 +140,41 @@ export const siteContent = {
       ],
     },
     {
+      slug: 'tumor-induced-angiogenesis-simulation',
+      title: 'Tumor-Induced Angiogenesis Simulation',
+      summary:
+        'Used physicell to simulate a cancer tumor and its effects on local vasculature with basic cells, substrates, and indicators',
+      year: '2025',
+      image: {
+        src: '/media/projects/angiogenesis-simulation.webp',
+        alt: 'Tumor-induced angiogenesis simulation with tumor cells and local vasculature',
+      },
+      links: [
+        {
+          label: 'Poster',
+          href: '/media/projects/angiogenesis-poster.pdf',
+        },
+      ],
+    },
+    {
+      slug: 'spotify-data-visualizations',
+      title: 'Spotify data visualizations',
+      summary:
+        "You can see my sleep schedule AND travel in just spotify listening. If there's one thing I love, it's looking at my music through the lens of data analysis. I find myself periodically returning to this project. It taught me basic python data viz in 2022, and I still come back now and again to add an even more convoluted feature!",
+      year: '2022',
+      status: 'Ongoing',
+      image: {
+        src: '/media/projects/spotify-viz-heatmap.webp',
+        alt: 'Spotify listening data visualizations',
+      },
+      links: [
+        {
+          label: 'GitHub',
+          href: 'https://github.com/ronmonga/spotify-viz',
+        },
+      ],
+    },
+    {
       slug: 'active-missing-persons-cases',
       title: 'Active Missing Persons Cases',
       summary:
@@ -174,24 +209,6 @@ export const siteContent = {
         {
           label: 'Live site',
           href: 'https://specials.idsnews.com/elections-guide-2024-ids/index.html',
-        },
-      ],
-    },
-    {
-      slug: 'spotify-data-visualizations',
-      title: 'Spotify data visualizations',
-      summary:
-        "You can see my sleep schedule AND travel in just spotify listening. If there's one thing I love, it's looking at my music through the lens of data analysis. I find myself periodically returning to this project. It taught me basic python data viz in 2022, and I still come back now and again to add an even more convoluted feature!",
-      year: '2022',
-      status: 'Ongoing',
-      image: {
-        src: '/media/projects/spotify-viz-heatmap.webp',
-        alt: 'Spotify listening data visualizations',
-      },
-      links: [
-        {
-          label: 'GitHub',
-          href: 'https://github.com/ronmonga/spotify-viz',
         },
       ],
     },

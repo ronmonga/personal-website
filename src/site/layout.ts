@@ -6,55 +6,68 @@ import {
   renderPrimaryNav,
   renderSocialIconLinks,
   resolveSiteHref,
-} from './shared.ts'
+} from './rendering.ts'
 import type { SiteView } from './types.ts'
 
 const portraitSwapSelections = new Map<string, ContentImage>()
+// Temporary comparison switch; set to false to remove the navigation wash.
+const NAV_WASH_ENABLED = true
 
 function renderHeader(content: SiteContent, view: SiteView): string {
   return `
-    <header class="editorial-top-header" data-hilbert-ignore>
-      <a class="editorial-top-wordmark" href="#about">${escapeHtml(content.profile.name)}</a>
-      ${renderPrimaryNav(content, view, 'editorial-top-nav')}
+    <header class="site-header" data-hilbert-ignore>
+      <a class="site-wordmark" href="#about">${escapeHtml(content.profile.name)}</a>
+      ${renderPrimaryNav(content, view, 'site-nav')}
     </header>
   `
 }
 
-function renderIdentity(content: SiteContent, className: string): string {
+function renderProfilePanel(
+  content: SiteContent,
+  view: SiteView,
+  className: string,
+): string {
+  const photo = `
+    <span class="site-photo-stage" data-profile-photo-stage>
+      <img class="site-photo" id="profile-photo" data-profile-photo src="${escapeHtml(resolveSiteHref(content.profile.photo.src))}" alt="${escapeHtml(content.profile.photo.alt)}">
+    </span>
+  `
+  const photoFrame =
+    view === 'about'
+      ? `<div class="site-photo-frame">${photo}</div>`
+      : `<a class="site-photo-frame site-photo-link" href="#about" aria-label="About ${escapeHtml(content.profile.name)}">${photo}</a>`
+
   return `
     <aside class="${className}" data-hilbert-ignore>
-      <a class="editorial-top-photo-link" href="#about" aria-label="About ${escapeHtml(content.profile.name)}">
-        <span class="editorial-top-photo-stage" data-editorial-portrait-stage>
-          <img class="editorial-top-photo" id="editorial-top-profile-photo" data-editorial-portrait src="${escapeHtml(resolveSiteHref(content.profile.photo.src))}" alt="${escapeHtml(content.profile.photo.alt)}">
-        </span>
-      </a>
-      ${renderSocialIconLinks(content, 'editorial-top-icons')}
+      ${photoFrame}
+      ${renderSocialIconLinks(content, 'site-icons')}
     </aside>
   `
 }
 
-export function renderEditorialTopRail(content: SiteContent, view: SiteView): string {
+export function renderSiteLayout(content: SiteContent, view: SiteView): string {
   const headline = content.profile.headline.trim()
+  const layoutClass = NAV_WASH_ENABLED ? 'site-layout site-layout--nav-wash' : 'site-layout'
 
   return `
-    <div class="editorial-top-rail-design">
+    <div class="${layoutClass}">
       ${renderHeader(content, view)}
       ${
         view === 'about'
-          ? `<main class="editorial-top-about">
-              <section class="editorial-top-sheet" data-hilbert-ignore>
-                ${renderIdentity(content, 'editorial-top-about-identity')}
-                <article class="editorial-top-prose">
-                  ${headline.length === 0 ? '' : `<p class="editorial-top-kicker">${escapeHtml(headline)}</p>`}
-                  ${renderBlurb(content, 'editorial-top-blurb')}
+          ? `<main class="site-about">
+              <section class="site-sheet" data-hilbert-ignore>
+                ${renderProfilePanel(content, view, 'site-about-identity')}
+                <article class="site-prose">
+                  ${headline.length === 0 ? '' : `<p class="site-kicker">${escapeHtml(headline)}</p>`}
+                  ${renderBlurb(content, 'site-blurb')}
                 </article>
               </section>
             </main>`
-          : `<div class="editorial-top-project-layout">
-              ${renderIdentity(content, 'editorial-top-project-identity')}
-              <main class="editorial-top-project-main">
-                <header class="editorial-top-project-heading" data-hilbert-ignore>
-                  <p class="editorial-top-kicker">Selected work</p>
+          : `<div class="site-project-layout">
+              ${renderProfilePanel(content, view, 'site-project-identity')}
+              <main class="site-project-main">
+                <header class="site-project-heading" data-hilbert-ignore>
+                  <!-- <p class="site-kicker">Selected work</p> -->
                   <h1>Projects and such.</h1>
                 </header>
                 <div class="project-card-grid">
@@ -67,12 +80,12 @@ export function renderEditorialTopRail(content: SiteContent, view: SiteView): st
   `
 }
 
-export function mountEditorialTopRailInteractions(
+export function mountSiteInteractions(
   root: ParentNode,
   content: SiteContent,
 ): () => void {
-  const portrait = root.querySelector<HTMLImageElement>('[data-editorial-portrait]')
-  const stage = root.querySelector<HTMLElement>('[data-editorial-portrait-stage]')
+  const portrait = root.querySelector<HTMLImageElement>('[data-profile-photo]')
+  const stage = root.querySelector<HTMLElement>('[data-profile-photo-stage]')
   const triggers = Array.from(
     root.querySelectorAll<HTMLButtonElement>('[data-portrait-swap]'),
   )

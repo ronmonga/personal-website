@@ -1,12 +1,12 @@
 import './style.css'
-import './designs/projectCard.css'
-import './designs/editorialTopRail.css'
+import './site/projectCard.css'
+import './site/layout.css'
 import { siteContent } from './content/siteContent.ts'
 import {
-  mountEditorialTopRailInteractions,
-  renderEditorialTopRail,
-} from './designs/editorialTopRail.ts'
-import type { SiteView } from './designs/types.ts'
+  mountSiteInteractions,
+  renderSiteLayout,
+} from './site/layout.ts'
+import type { SiteView } from './site/types.ts'
 import {
   HilbertBackground,
   type HilbertBackgroundConfig,
@@ -57,16 +57,16 @@ function getCurrentView(): SiteView {
   return window.location.hash === '#projects' ? 'projects' : 'about'
 }
 
-let unmountDesignInteractions: () => void = () => {}
+let unmountSiteInteractions: () => void = () => {}
 
 function renderSite(): void {
   const view = getCurrentView()
 
-  unmountDesignInteractions()
+  unmountSiteInteractions()
   document.body.dataset.view = view
   document.title = `${siteContent.profile.name} — ${view === 'about' ? 'About' : 'Projects'}`
-  siteRootElement.innerHTML = renderEditorialTopRail(siteContent, view)
-  unmountDesignInteractions = mountEditorialTopRailInteractions(siteRootElement, siteContent)
+  siteRootElement.innerHTML = renderSiteLayout(siteContent, view)
+  unmountSiteInteractions = mountSiteInteractions(siteRootElement, siteContent)
 }
 
 const handleHashChange = (): void => {
@@ -86,7 +86,7 @@ window.addEventListener('pagehide', destroyBackground, { once: true })
 
 if (import.meta.hot) {
   import.meta.hot.dispose(() => {
-    unmountDesignInteractions()
+    unmountSiteInteractions()
     window.removeEventListener('hashchange', handleHashChange)
     window.removeEventListener('pagehide', destroyBackground)
     background.destroy()

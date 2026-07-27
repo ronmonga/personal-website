@@ -13,5 +13,5 @@ npm run dev
 Create a production build with `npm run build`.
 
 Private source media is intentionally excluded from Git. The generated public
-mirror contains only the metadata-scrubbed WebP derivatives required by the
-site and deploys them through GitHub Pages.
+mirror contains only the reviewed WebP and PDF derivatives required by the site
+and deploys them through GitHub Pages.

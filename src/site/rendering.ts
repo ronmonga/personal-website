@@ -81,7 +81,7 @@ function renderBlurbParagraph(
 
     const visiblePhrase = paragraph.slice(start, end)
     rendered += escapeHtml(paragraph.slice(cursor, start))
-    rendered += `<button class="portrait-swap-trigger" type="button" data-portrait-swap="${escapeHtml(swap.id)}" aria-controls="editorial-top-profile-photo" aria-label="${escapeHtml(`${visiblePhrase}: show related photo`)}" aria-pressed="false">${escapeHtml(visiblePhrase)}</button>`
+    rendered += `<button class="portrait-swap-trigger" type="button" data-portrait-swap="${escapeHtml(swap.id)}" aria-controls="profile-photo" aria-label="${escapeHtml(`${visiblePhrase}: show related photo`)}" aria-pressed="false">${escapeHtml(visiblePhrase)}</button>`
     renderedSwapIds.add(swap.id)
     cursor = end
   }
