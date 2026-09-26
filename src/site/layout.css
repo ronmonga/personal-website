@@ -125,11 +125,6 @@
   object-fit: cover;
   object-position: center 32%;
   filter: saturate(1.1);
-  transition: filter 180ms ease, transform 180ms ease;
-}
-
-.site-photo-link:hover .site-photo {
-  transform: rotate(-0.6deg);
 }
 
 .site-icons {

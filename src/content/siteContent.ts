@@ -57,8 +57,8 @@ export const siteContent = {
       `Welcome! My name is Ronak Singh Monga.`,
       `I'm a Data Scientist interested in finding ways to apply, align, and train LLMs in ways that safely generate positive impact. I find multi-agent environments and their emergent behaviors particularly fascinating.`,
       `I live in the bay, but have also spent significant time on the east coast, midwest, and in Sydney, Australia!`,
-      `By night I'm a bhangra dancer. I love to teach, compete, and perform at the occasional concert.`,
-      `On a full moon, however, you might find me involved in puzzles, music, hiking, or eating fruit.`
+      `I also moonlight as a bhangra dancer. I love to teach, compete, and perform at the occasional concert.`,
+      `If you're lucky, you might find me involved in puzzles, music, hiking, or eating fruit.`
     ],
     // Each phrase is matched once across the free-form blurb. Add, remove, or
     // move the phrase without changing the page markup. Multiple images are

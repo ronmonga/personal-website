@@ -24,7 +24,6 @@ function renderHeader(content: SiteContent, view: SiteView): string {
 
 function renderProfilePanel(
   content: SiteContent,
-  view: SiteView,
   className: string,
 ): string {
   const photo = `
@@ -32,14 +31,10 @@ function renderProfilePanel(
       <img class="site-photo" id="profile-photo" data-profile-photo src="${escapeHtml(resolveSiteHref(content.profile.photo.src))}" alt="${escapeHtml(content.profile.photo.alt)}">
     </span>
   `
-  const photoFrame =
-    view === 'about'
-      ? `<div class="site-photo-frame">${photo}</div>`
-      : `<a class="site-photo-frame site-photo-link" href="#about" aria-label="About ${escapeHtml(content.profile.name)}">${photo}</a>`
 
   return `
     <aside class="${className}" data-hilbert-ignore>
-      ${photoFrame}
+      <div class="site-photo-frame">${photo}</div>
       ${renderSocialIconLinks(content, 'site-icons')}
     </aside>
   `
@@ -56,7 +51,7 @@ export function renderSiteLayout(content: SiteContent, view: SiteView): string {
         view === 'about'
           ? `<main class="site-about">
               <section class="site-sheet" data-hilbert-ignore>
-                ${renderProfilePanel(content, view, 'site-about-identity')}
+                ${renderProfilePanel(content, 'site-about-identity')}
                 <article class="site-prose">
                   ${headline.length === 0 ? '' : `<p class="site-kicker">${escapeHtml(headline)}</p>`}
                   ${renderBlurb(content, 'site-blurb')}
@@ -64,7 +59,7 @@ export function renderSiteLayout(content: SiteContent, view: SiteView): string {
               </section>
             </main>`
           : `<div class="site-project-layout">
-              ${renderProfilePanel(content, view, 'site-project-identity')}
+              ${renderProfilePanel(content, 'site-project-identity')}
               <main class="site-project-main">
                 <header class="site-project-heading" data-hilbert-ignore>
                   <!-- <p class="site-kicker">Selected work</p> -->
